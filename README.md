@@ -112,6 +112,13 @@ day still passes the variance rule (see Mumbai 2025-12-16).
 Why Parquet: columnar, compressed (97 MB raw gz → fast partitioned reads), keeps types.
 Why SQLite on top: the gold tables are tiny; plain SQL with window functions is the easiest interface.
 
+## Also runs on Databricks
+
+`databricks/airquality_pipeline.py` is the same pipeline as a Databricks notebook
+(Free Edition, serverless): files land in a Unity Catalog volume, each layer is a
+Delta table (`bronze_readings`, `silver_*`, `gold_*`), and the analytics run as
+`%sql` cells. Import it via Workspace > Import and Run all.
+
 ## Layout
 
 ```
@@ -126,6 +133,7 @@ run_sql.py             runs every sql/*.sql and prints the results
 sql/                   01 worst winter cities · 02 cleanest month per city (ROW_NUMBER)
                        03 month-over-month trend (LAG) · 04 station gaps · 05 worst single days
 spark_session.py       one SparkSession config for every layer
+databricks/            the same pipeline as a Databricks notebook (Delta tables)
 ```
 
 Data: [OpenAQ](https://openaq.org) (CC BY 4.0), readings originally from CPCB and state pollution control boards.
