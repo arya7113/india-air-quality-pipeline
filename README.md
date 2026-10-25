@@ -117,7 +117,7 @@ Why SQLite on top: the gold tables are tiny; plain SQL with window functions is 
 `databricks/airquality_pipeline.py` is the same pipeline as a Databricks notebook
 (Free Edition, serverless): files land in a Unity Catalog volume, each layer is a
 Delta table (`bronze_readings`, `silver_*`, `gold_*`), and the analytics run as
-`%sql` cells. Import it via Workspace > Import and Run all.
+`%sql` cells. Import it via Workspace > your folder > Import and Run all. Verified: 10 stations, 6/6 quality checks pass, ~3 min on serverless.
 
 ## Layout
 
